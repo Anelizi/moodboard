@@ -7,6 +7,7 @@ import Cart from "./pages/CartPage";
 import PurchasesMade from "./pages/PurchasesMadePage"
 import { useState } from "react";
 import ProductContext from "./contexts/ProductContext";
+import styled from "styled-components";
 
 export default function App() {
   const [image, setImage]= useState("")

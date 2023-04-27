@@ -13,7 +13,8 @@ export default function Product(){
     const navigate= useNavigate();
 
     useEffect(() => {
-        const requisition= axios.get("mongodb://localhost:27017/moodboard/produtos",{ headers: { Authorization: `Bearer ${auth}`,Product: params.product_name }})
+        // colocar o ${auth}
+        const requisition= axios.get("mongodb://localhost:27017/moodboard/produtos",{ headers: { Authorization: `Bearer`,Product: params.product_name }})
         requisition. then((response)=>{ setImage(response.data.image);
         setDescription(response.data.description);
         setProduct(response.data.productname)
@@ -38,10 +39,10 @@ export default function Product(){
                 </Icons>
             </Header>
             <PageContent>
-                <Product>
+                <Products>
                   <ProdText>{product}</ProdText>
                   <img src={image}/>
-                </Product>
+                </Products>
                 <Info>
                     <Des>Descrição</Des>
                     <Description>{description}</Description>
@@ -90,7 +91,7 @@ flex-direction:row;
 justify-content: space-between;
 align-items:center;`
 
-const Product= styled.div `
+const Products= styled.div `
 display: flex;
 flex-direction:column;
 img{
