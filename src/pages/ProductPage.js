@@ -37,7 +37,23 @@ export default function Product(){
                   <ion-icon name="exit-outline"></ion-icon>
                 </Icons>
             </Header>
-            <PageContent></PageContent>
+            <PageContent>
+                <Product>
+                  <ProdText>{product}</ProdText>
+                  <img src={image}/>
+                </Product>
+                <Info>
+                    <Des>Descrição</Des>
+                    <Description>{description}</Description>
+                    <Quant>Quantidade</Quant>
+                    <form onSubmit={AddToCart}>
+                        <input type="number" value={amount} onChange={e => setAmount(e.target.value)}/>
+                        <Button type="submit">ADICIONAR AO CARRINHO</Button>
+                    </form>
+
+                </Info>
+
+            </PageContent>
         </Background>
     )
 }
@@ -75,4 +91,50 @@ justify-content: space-between;
 align-items:center;`
 
 const Product= styled.div `
+display: flex;
+flex-direction:column;
+img{
+    border-radius:5px;
+    width: 300px;
+    height:300px;
+    margin-top:30px;
+}
 `
+
+const ProdText= styled.div `
+font-family: Open Sans;
+font-size: x-large;
+font-weigth: 700;
+`
+
+const Info= styled.div `
+display: flex;
+flex-direction:column;
+`
+const Des= styled.div `
+font-family: Open Sans;
+font-size: large;
+font-weigth: 400;
+margin-bottom:20px;
+`
+
+const Description= styled.div `
+font-family: Open Sans;
+font-size: medium;
+font-weigth: 300;
+margin-bottom: 30px;`
+
+const Quant= styled.div `
+font-family: Open Sans;
+font-size: medium;
+font-weigth: 300;
+margin-bottom: 5px;`
+
+const Button= styled.button `
+background-color: #6cc4b1;
+border-radius: 8px;
+color: white;
+font-family:Open Sans;
+font-size: large;
+width: 250px;
+height:100px;`
