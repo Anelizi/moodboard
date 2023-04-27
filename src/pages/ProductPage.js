@@ -23,7 +23,7 @@ export default function Product(){
     function AddToCart(event){
         event.preventDefault()
         const body= {product: product, amount: amount, price: price }
-        const requisition= axios.post("mongodb://localhost:27017/moodboard/produtos",body);
+        const requisition= axios.post("mongodb://localhost:27017/moodboard/carrinho",body);
         requisition.then(navigate("/cart"))
         requisition.catch((err)=> alert(err.message))
     }
