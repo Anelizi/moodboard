@@ -1,9 +1,10 @@
 import styled from "styled-components"
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
-import { useEffect , useParams} from "react"
+import { useEffect } from "react"
 import { useContext } from "react";
 import ProductContext from "../contexts/ProductContext";
+import { useParams } from "react-router-dom";
 
 export default function Product(){
 
@@ -15,10 +16,10 @@ export default function Product(){
     useEffect(() => {
         // colocar o ${auth}
         const requisition= axios.get("mongodb://localhost:27017/moodboard/produtos",{ headers: { Authorization: `Bearer`,Product: params.product_name }})
-        requisition. then((response)=>{ setImage(response.data.image);
+        requisition. then((response)=>{ setImage(response.data.linkPhoto);
         setDescription(response.data.description);
-        setProduct(response.data.productname)
-        setPrice(response.data.price)})
+        setProduct(response.data.name)
+        setPrice(Number(response.data.price))})
     },[])
 
     function AddToCart(event){
