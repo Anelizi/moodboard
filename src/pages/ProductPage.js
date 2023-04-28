@@ -1,9 +1,10 @@
 import styled from "styled-components"
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
-import { useEffect , useParams} from "react"
+import { useEffect } from "react"
 import { useContext } from "react";
 import ProductContext from "../contexts/ProductContext";
+import { useParams } from "react-router-dom";
 
 export default function Product(){
 
