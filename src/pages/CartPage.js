@@ -32,6 +32,13 @@ export default function Cart(){
         setOpen(true)
     }
 
+    function Delete(item){
+        const top= {headers:{ Authorization: `Bearer`, Identification: item.identification}}
+        const promise=axios.delete("mongodb://localhost:27017/moodboard/carrinho",top)
+        promise.then((response)=> console.log(response.message))
+        promise.catch((err)=> console.log(err.message))
+    }
+
     return(
         <Container>
             <Top/>
@@ -45,7 +52,7 @@ export default function Cart(){
                     <Name>{i.product}</Name>
                     <Price>R$ {i.price}</Price>
                     <Amount>{i.amount}</Amount>
-                    <Trash><ion-icon name="trash-outline"></ion-icon></Trash>
+                    <Trash onClick={Delete(i.identification)}><ion-icon name="trash-outline"></ion-icon></Trash>
                     </Box>)}
 
             </ContainerBox>
