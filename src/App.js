@@ -22,10 +22,10 @@ export default function App() {
   
   const [total, setTotal]=useState(0)
   const [address, setAddress]= useState(0)
-  const [prodname, setProdname]= useState("")
+  const [cart, setCart]= useState([])
   const [open, setOpen]= useState(false)
   const CartValue= {total: total, setTotal: setTotal, address: address, setAddress: setAddress,
-     prodname: prodname, setProdname: setProdname, open: open, setOpen: setOpen}
+     cart: cart, setCart: setCart, open: open, setOpen: setOpen, price: price,amount: amount}
 
 
   return (
