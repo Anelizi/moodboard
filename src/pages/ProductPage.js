@@ -16,10 +16,10 @@ export default function Product(){
     useEffect(() => {
         // colocar o ${auth}
         const requisition= axios.get("mongodb://localhost:27017/moodboard/produtos",{ headers: { Authorization: `Bearer`,Product: params.product_name }})
-        requisition. then((response)=>{ setImage(response.data.image);
+        requisition. then((response)=>{ setImage(response.data.linkPhoto);
         setDescription(response.data.description);
-        setProduct(response.data.productname)
-        setPrice(response.data.price)})
+        setProduct(response.data.name)
+        setPrice(Number(response.data.price))})
     },[])
 
     function AddToCart(event){
