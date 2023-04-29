@@ -24,8 +24,13 @@ export default function App() {
   const [address, setAddress]= useState("")
   const [cart, setCart]= useState([])
   const [open, setOpen]= useState(false)
+  const [cardname, setCardname]= useState("")
+  const [digits,setDigits]=useState("")
+  const [cvv,setCvv]=useState("")
+  const [expire, setExpire]=useState("")
   const CartValue= {total: total, setTotal: setTotal, address: address, setAddress: setAddress,
-     cart: cart, setCart: setCart, open: open, setOpen: setOpen, price: price,amount: amount}
+     cart: cart, setCart: setCart, open: open, setOpen: setOpen, price: price,amount: amount,
+     cardname:cardname, setCardname:setCardname, digits:digits, setDigits:setDigits, cvv: cvv, setCvv: setCvv,expire:expire, setExpire: setExpire}
 
 
   return (
