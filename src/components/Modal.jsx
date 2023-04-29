@@ -7,8 +7,8 @@ import CartContext from "../contexts/CartContext";
 
 function Modal({onClose}){
 
-    //const usuarioDes= localStorage.getItem("usuario")
-    //const informacoes=JSON.parse(usuarioDes)
+    const info = localStorage.getItem("usuario")
+    const auth = JSON.parse(info);
 
     const navigate=useNavigate();
 
@@ -17,7 +17,7 @@ function Modal({onClose}){
     function ConfirmPurchase(){
         const body= {prodname: prodname, address: address, total: total, cardname: cardname, digits: digits, cvv: cvv, expire: expire}
         const promise=axios.post("http://localhost:5000/compras",body,{
-               headers: { Authorization: `Bearer` }
+               headers: { Authorization: `Bearer ${auth}` }
              });
             promise.then((response)=>{navigate("/purchasesMade"); setOpen(false) })
             promise.catch((error)=> alert(error.response.data.message))

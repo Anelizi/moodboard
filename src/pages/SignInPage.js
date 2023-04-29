@@ -19,6 +19,8 @@ export default function SignIn() {
             const promise = axios.post(URL, data)
             promise.then(response => {
                 alert("Usuário logado")
+                const user = JSON.stringify(response.data);
+                localStorage.setItem("usuario", user);
                 //handleSetToken(response.data.token)
                 //handleSetUser(response.data.user)
                 navigate('/home')

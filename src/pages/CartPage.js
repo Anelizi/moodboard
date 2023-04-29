@@ -8,12 +8,16 @@ import axios from "axios";
 
 export default function Cart(){
 
+    const info = localStorage.getItem("usuario")
+    const auth = JSON.parse(info);
+
     useEffect(() => {
-        const requisition=axios.get("http:localhost:5000/carrinho",{ headers: { Authorization: `Bearer` }})
+        const requisition=axios.get("http:localhost:5000/carrinho",{ headers: { Authorization: `Bearer ${auth}` }})
         requisition.then((response) => {
             setCart(response.data);
         })
     })
+
     
     const {cart, setCart, address, setAddress, total, setTotal, open, setOpen, cardname, setCardname, digits, setDigits, expire, setExpire, cvv, setCvv}= useContext(CartContext)
 
@@ -33,7 +37,7 @@ export default function Cart(){
     }
 
     function Delete(item){
-        const top= {headers:{ Authorization: `Bearer`, Identification: item.identification}}
+        const top= {headers:{ Authorization: `Bearer ${auth}`, Identification: item.identification}}
         const promise=axios.delete("http:localhost:5000/carrinho",top)
         promise.then((response)=> console.log(response.message))
         promise.catch((err)=> console.log(err.message))

@@ -9,6 +9,9 @@ import Top from "../components/Top";
 
 export default function Product(){
 
+    const info = localStorage.getItem("usuario")
+    const auth = JSON.parse(info);
+
     const {image, setImage, description, setDescription, product, setProduct, price, setPrice, amount, setAmount }= useContext(ProductContext)
 
     const params = useParams();
@@ -16,7 +19,7 @@ export default function Product(){
 
     useEffect(() => {
         // colocar o ${auth}
-        const requisition= axios.get("http:localhost:5000/produtos",{ headers: { Authorization: `Bearer`,Product: params.product_name }})
+        const requisition= axios.get("http:localhost:5000/produtos",{ headers: { Authorization: `Bearer ${auth}`,Product: params.product_name }})
         requisition. then((response)=>{ setImage(response.data.linkPhoto);
         setDescription(response.data.description);
         setProduct(response.data.name)

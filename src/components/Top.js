@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import {
   IoCartSharp,
   IoPersonCircleSharp,
@@ -6,18 +9,29 @@ import {
 } from "react-icons/io5";
 
 export default function Top() {
+
+  const navigate= useNavigate();
+
+  const info = localStorage.getItem("usuario")
+    const auth = JSON.parse(info);
+  
+  function Logout() {
+    const requisition = axios.delete(`http://localhost:5000/logout`, { headers: { Authorization: `Bearer ${auth}` } })
+    requisition.then(navigate("/"))
+  }
   return (
     <Container>
       <div>
         <h1>moodboard</h1>
         <Icons>
           <button>
-            <IoCartSharp />
+            <Link to="/cart"><IoCartSharp /></Link>
           </button>
           <button>
-            <IoPersonCircleSharp />
+            <Link to="/purchasesMade"><IoPersonCircleSharp /></Link>
           </button>
-          <button>
+          <button onClick={Logout}>
+
             <IoExitOutline />
           </button>
         </Icons>
