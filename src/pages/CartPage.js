@@ -9,7 +9,7 @@ import axios from "axios";
 export default function Cart(){
 
     useEffect(() => {
-        const requisition=axios.get("mongodb://localhost:27017/moodboard/carrinho",{ headers: { Authorization: `Bearer` }})
+        const requisition=axios.get("http:localhost:5000/carrinho",{ headers: { Authorization: `Bearer` }})
         requisition.then((response) => {
             setCart(response.data);
         })
@@ -34,7 +34,7 @@ export default function Cart(){
 
     function Delete(item){
         const top= {headers:{ Authorization: `Bearer`, Identification: item.identification}}
-        const promise=axios.delete("mongodb://localhost:27017/moodboard/carrinho",top)
+        const promise=axios.delete("http:localhost:5000/carrinho",top)
         promise.then((response)=> console.log(response.message))
         promise.catch((err)=> console.log(err.message))
     }

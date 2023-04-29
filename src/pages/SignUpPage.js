@@ -16,7 +16,7 @@ export default function SignUp() {
 
     function checkData(event) {
         event.preventDefault()
-        const URL = `${process.env.REACT_APP_API_URL}/cadastro`
+        const URL = "http://localhost:5000/cadastro"
         const data = { name, image, email, password }
         const checkEMail = /\S+@\S+\.\S+/;
 

@@ -16,7 +16,7 @@ function Modal({onClose}){
 
     function ConfirmPurchase(){
         const body= {prodname: prodname, address: address, total: total}
-        const promise=axios.post(`mongodb://localhost:27017/moodboard/compras`,body,{
+        const promise=axios.post("http://localhost:5000/compras",body,{
                headers: { Authorization: `Bearer` }
              });
             promise.then((response)=>{navigate("/purchasesMade"); setOpen(false) })

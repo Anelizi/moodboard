@@ -11,7 +11,7 @@ export default function SignIn() {
 
     function checkData(event) {
         event.preventDefault()
-        const URL = `${process.env.REACT_APP_API_URL}/`
+        const URL = "http://localhost:5000/"
         const data = { email, password}
         const checkEMail = /\S+@\S+\.\S+/;
 

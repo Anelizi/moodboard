@@ -15,7 +15,7 @@ export default function Product(){
 
     useEffect(() => {
         // colocar o ${auth}
-        const requisition= axios.get("mongodb://localhost:27017/moodboard/produtos",{ headers: { Authorization: `Bearer`,Product: params.product_name }})
+        const requisition= axios.get("http:localhost:5000/produtos",{ headers: { Authorization: `Bearer`,Product: params.product_name }})
         requisition. then((response)=>{ setImage(response.data.linkPhoto);
         setDescription(response.data.description);
         setProduct(response.data.name)
@@ -25,7 +25,7 @@ export default function Product(){
     function AddToCart(event){
         event.preventDefault()
         const body= {product: product, amount: amount, price: price }
-        const requisition= axios.post("mongodb://localhost:27017/moodboard/carrinho",body);
+        const requisition= axios.post("http:localhost:5000/carrinho",body);
         requisition.then(navigate("/cart"))
         requisition.catch((err)=> alert(err.message))
     }
