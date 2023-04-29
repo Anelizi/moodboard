@@ -58,11 +58,11 @@ export default function Cart(){
             </ContainerBox>
             <Align>
                 <Text1></Text1>
-                <Text2>Total</Text2>
+                <Text4>Total</Text4>
                 <Text3>R$ {total}</Text3>
             </Align>
             <Align2>
-                <Text1>Endereço para entrega</Text1>
+                <Text5>Endereço para entrega</Text5>
                 <input type="text" placeholder="Rua,Número - Cidade, Estado(sigla)- CEP" value={address} onChange={e => setAddress(e.target.value)}/>
             </Align2>
             <Center>
@@ -77,15 +77,14 @@ const Container = styled.div`
   margin-top: 70px;
   width: 100vw;
   height: 89.9vh;
-  display: flex;
-  justify-content: center;
   background: #ffffff;
 `;
 
 const Align= styled.div `
 display:flex;
 flex-direction: row;
-margin-top:25px;`
+margin-top:100px;
+margin-left:200px;`
 
 const Text1= styled.div `
 font-family: 'Open Sans';
@@ -139,14 +138,19 @@ const Align2= styled.div `
 display:flex;
 flex-direction: column;
 margin-top:25px;
-margin-bottom:50px;`
+margin-bottom:50px;
+margin-left:200px;
+input{
+    width:70%;
+}`
 
 const Button= styled.button `
 background-color: #6cc4b1;
-border-radius: 8px;
+border-radius: 20px;
 color: white;
 font-family:Open Sans;
-font-size: large;
+font-size: x-large;
+font-weight:900;
 width: 250px;
 height:100px;`
 
@@ -154,3 +158,17 @@ const Center= styled.div `
 display:flex;
 justify-content:center;
 align-items: center;`
+
+const Text4= styled.div `
+font-family: 'Open Sans';
+font-weight: 700;
+font-size: large;
+margin-left:73px;
+margin-right:5px;`
+
+const Text5= styled.div `
+font-family: 'Open Sans';
+font-weight: 700;
+font-size: large;
+margin-bottom: 15px;
+`

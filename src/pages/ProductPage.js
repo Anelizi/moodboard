@@ -5,6 +5,7 @@ import { useEffect } from "react"
 import { useContext } from "react";
 import ProductContext from "../contexts/ProductContext";
 import { useParams } from "react-router-dom";
+import Top from "../components/Top";
 
 export default function Product(){
 
@@ -31,14 +32,7 @@ export default function Product(){
     }
     return(
         <Background>
-            <Header>
-                <Logo>moodboard</Logo>
-                <Icons>
-                  <ion-icon name="cart"></ion-icon>
-                  <ion-icon name="person-circle-outline"></ion-icon>
-                  <ion-icon name="exit-outline"></ion-icon>
-                </Icons>
-            </Header>
+            <Top/>
             <PageContent>
                 <Products>
                   <ProdText>{product}</ProdText>
@@ -48,10 +42,10 @@ export default function Product(){
                     <Des>Descrição</Des>
                     <Description>{description}</Description>
                     <Quant>Quantidade</Quant>
-                    <form onSubmit={AddToCart}>
+                    <Form onSubmit={AddToCart}>
                         <input type="number" value={amount} onChange={e => setAmount(e.target.value)}/>
                         <Button type="submit">ADICIONAR AO CARRINHO</Button>
-                    </form>
+                    </Form>
 
                 </Info>
 
@@ -65,31 +59,13 @@ background-color: white;
 heigth:100%;
 width:100%;`
 
-const Header= styled.header `
-display:flex;
-flex-direction: row;
-width:100%;
-outline-color: gray;
-outline-style: inset;
-margin-bottom:50px;
-`
 
-const Logo= styled.div `
-color: #6cc4b1;
-font-family: Open Sans;
-font-size: x-large;
-font-weigth: 700;
-`
 
-const Icons= styled.div `
-display: flex;
-flex-direction:row;
-justify-content: space-between;`
 
 const PageContent= styled.div `
 display: flex;
 flex-direction:row;
-justify-content: space-between;
+justify-content: space-evenly;
 align-items:center;`
 
 const Products= styled.div `
@@ -100,7 +76,10 @@ img{
     width: 300px;
     height:300px;
     margin-top:30px;
-}
+    outline-style:groove;
+};
+margin-left:100px;
+margin-top:150px;
 `
 
 const ProdText= styled.div `
@@ -112,6 +91,7 @@ font-weigth: 700;
 const Info= styled.div `
 display: flex;
 flex-direction:column;
+margin-top:150px;
 `
 const Des= styled.div `
 font-family: Open Sans;
@@ -124,7 +104,7 @@ const Description= styled.div `
 font-family: Open Sans;
 font-size: medium;
 font-weigth: 300;
-margin-bottom: 30px;`
+margin-bottom: 110px;`
 
 const Quant= styled.div `
 font-family: Open Sans;
@@ -134,9 +114,15 @@ margin-bottom: 5px;`
 
 const Button= styled.button `
 background-color: #6cc4b1;
-border-radius: 8px;
+border-radius: 20px;
 color: white;
 font-family:Open Sans;
-font-size: large;
+font-size: x-large;
+font-weight:900;
 width: 250px;
-height:100px;`
+height:100px;
+margin-top:50px;`
+
+const Form= styled.form `
+display:flex;
+flex-direction:column; `
