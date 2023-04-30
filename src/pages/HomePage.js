@@ -1,24 +1,36 @@
+import axios from "axios";
+import { key } from "localforage";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ProductsHomePage from "../components/ProductsHomePage";
 import Top from "../components/Top";
 
 export default function Home() {
+
+  const [products, setProducts] = useState(undefined)
+
+  useEffect(()=>{
+    axios.get(`${process.env.REACT_APP_API_URL}/produtos`)
+    .then(res => setProducts(res.data))
+    .catch(err => console.log(err.response.data))
+  },[])
+
+  if (products === undefined){
+    return <div>Carregando...</div>
+  }
+
+  console.log(products)
+
   return (
     <Container>
       <Top/>
       <ContainerProduct>
-        <ProductsHomePage/>
-        <ProductsHomePage/>
-        <ProductsHomePage/>
-        <ProductsHomePage/>
-        <ProductsHomePage/>
-        <ProductsHomePage/>
-        <ProductsHomePage/>
-        <ProductsHomePage/>
-        <ProductsHomePage/>
-        <ProductsHomePage/>
-        <ProductsHomePage/>
-        <ProductsHomePage/>
+        {products.map((p) =>(
+          <Link to={`/product/${p.id}`} key={p.id}>
+           <ProductsHomePage product={p}/>
+          </Link>
+           ))}
       </ContainerProduct>
     </Container>
   );
@@ -36,4 +48,6 @@ const Container = styled.div`
 const ContainerProduct = styled.div`
     width: 84vw;
     height: 100%;
+    display: flex;
+    justify-content: center;
 `

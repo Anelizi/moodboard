@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
-export default function ProductsHomePage() {
+export default function ProductsHomePage({product}) {
+  const {linkPhoto, prince, name} = product
   return (
     <Button>
-      <img src="https://img.freepik.com/vetores-premium/frasco-cosmetico-de-prata-embalagem-de-dispensador-de-bomba-em-branco-para-shampoo-locao-pacote-de-sabonete-de-lavagem-de-mao-isolado-no-branco-tubo-para-tratamento-medico-transparente-sem-rotulo-produto-de-beleza-premium_83194-1225.jpg" />
+      {/* <img src="https://img.freepik.com/vetores-premium/frasco-cosmetico-de-prata-embalagem-de-dispensador-de-bomba-em-branco-para-shampoo-locao-pacote-de-sabonete-de-lavagem-de-mao-isolado-no-branco-tubo-para-tratamento-medico-transparente-sem-rotulo-produto-de-beleza-premium_83194-1225.jpg" /> */}
+      <img src={linkPhoto} alt={name}/>
       <div>
-        <p>R$ 20.00</p>
+        <p>{`R$ ${prince}`}</p>
       </div>
     </Button>
   );
