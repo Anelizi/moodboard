@@ -16,7 +16,7 @@ function Modal({onClose}){
 
     function ConfirmPurchase(){
         const body= {prodname: prodname, address: address, total: total, cardname: cardname, digits: digits, cvv: cvv, expire: expire}
-        const promise=axios.post("http://localhost:5000/compras",body,{
+        const promise=axios.post(`${process.env.REACT_APP_API_URL}/compras`,body,{
                headers: { Authorization: `Bearer ${auth}` }
              });
             promise.then((response)=>{navigate("/purchasesMade"); setOpen(false) })

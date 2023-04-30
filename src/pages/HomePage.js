@@ -27,7 +27,7 @@ export default function Home() {
       <Top/>
       <ContainerProduct>
         {products.map((p) =>(
-          <Link to={`/product/${p.id}`} key={p.id}>
+          <Link to={`/product/${p.name}`} key={p._id}>
            <ProductsHomePage product={p}/>
           </Link>
            ))}
@@ -46,8 +46,9 @@ const Container = styled.div`
 `;
 
 const ContainerProduct = styled.div`
-    width: 84vw;
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: row;
 `

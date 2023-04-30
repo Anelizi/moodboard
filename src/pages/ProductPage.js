@@ -15,21 +15,24 @@ export default function Product(){
     const {image, setImage, description, setDescription, product, setProduct, price, setPrice, amount, setAmount }= useContext(ProductContext)
 
     const params = useParams();
+    console.log(params)
     const navigate= useNavigate();
 
     useEffect(() => {
         // colocar o ${auth}
-        const requisition= axios.get("http:localhost:5000/produtos",{ headers: { Authorization: `Bearer ${auth}`,Product: params.product_name }})
+        const requisition= axios.get(`${process.env.REACT_APP_API_URL}/prod`,{ headers: { Authorization: `Bearer ${auth}`,Product: params.product_name }})
         requisition. then((response)=>{ setImage(response.data.linkPhoto);
         setDescription(response.data.description);
         setProduct(response.data.name)
-        setPrice(Number(response.data.price))})
+        setPrice(response.data.price);
+        console.log(response.data)})
+        requisition.catch((err) => (console.log(err.message)))
     },[])
 
     function AddToCart(event){
         event.preventDefault()
         const body= {product: product, amount: amount, price: price }
-        const requisition= axios.post("http:localhost:5000/carrinho",body);
+        const requisition= axios.post(`${process.env.REACT_APP_API_URL}/carrinho`,body);
         requisition.then(navigate("/cart"))
         requisition.catch((err)=> alert(err.message))
     }
@@ -44,6 +47,8 @@ export default function Product(){
                 <Info>
                     <Des>Descrição</Des>
                     <Description>{description}</Description>
+                    <Des>Preço</Des>
+                    <Price>{price}</Price>
                     <Quant>Quantidade</Quant>
                     <Form onSubmit={AddToCart}>
                         <input type="number" value={amount} onChange={e => setAmount(e.target.value)}/>
@@ -82,13 +87,13 @@ img{
     outline-style:groove;
 };
 margin-left:100px;
-margin-top:150px;
+margin-top:40px;
 `
 
 const ProdText= styled.div `
 font-family: Open Sans;
 font-size: x-large;
-font-weigth: 700;
+font-weight: 900;
 `
 
 const Info= styled.div `
@@ -99,7 +104,7 @@ margin-top:150px;
 const Des= styled.div `
 font-family: Open Sans;
 font-size: large;
-font-weigth: 400;
+font-weight: 900;
 margin-bottom:20px;
 `
 
@@ -107,7 +112,9 @@ const Description= styled.div `
 font-family: Open Sans;
 font-size: medium;
 font-weigth: 300;
-margin-bottom: 110px;`
+margin-bottom: 20px;
+width: 400px;
+margin-top:15px;`
 
 const Quant= styled.div `
 font-family: Open Sans;
@@ -129,3 +136,10 @@ margin-top:50px;`
 const Form= styled.form `
 display:flex;
 flex-direction:column; `
+
+const Price= styled.div `
+font-family: Open Sans;
+font-size: medium;
+font-weigth: 300;
+margin-bottom: 70px;
+width: 400px;`

@@ -12,7 +12,7 @@ export default function Cart(){
     const auth = JSON.parse(info);
 
     useEffect(() => {
-        const requisition=axios.get("http:localhost:5000/carrinho",{ headers: { Authorization: `Bearer ${auth}` }})
+        const requisition=axios.get(`${process.env.REACT_APP_API_URL}/carrinho`,{ headers: { Authorization: `Bearer ${auth}` }})
         requisition.then((response) => {
             setCart(response.data);
         })
@@ -38,7 +38,7 @@ export default function Cart(){
 
     function Delete(item){
         const top= {headers:{ Authorization: `Bearer ${auth}`, Identification: item.identification}}
-        const promise=axios.delete("http:localhost:5000/carrinho",top)
+        const promise=axios.delete(`${process.env.REACT_APP_API_URL}/carrinho`,top)
         promise.then((response)=> console.log(response.message))
         promise.catch((err)=> console.log(err.message))
     }
