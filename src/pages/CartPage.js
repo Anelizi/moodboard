@@ -38,9 +38,9 @@ export default function Cart(){
     }
 
     function Delete(item){
-        const top= {headers:{ Authorization: `Bearer ${auth}`, Identification: item.identification}}
+        const top= {headers:{ Authorization: `Bearer ${auth}`, Identification: item}}
         const promise=axios.delete(`${process.env.REACT_APP_API_URL}/carrinho`,top)
-        promise.then((response)=> console.log(response.message))
+        promise.then((response)=> console.log(response))
         promise.catch((err)=> console.log(err.message))
     }
 
@@ -57,7 +57,7 @@ export default function Cart(){
                     <Name>{i.product}</Name>
                     <Price>R$ {i.price}</Price>
                     <Amount>{i.amount}</Amount>
-                    <Trash onClick={Delete(i.identification)}><ion-icon name="trash-outline"></ion-icon></Trash>
+                    <Trash onClick={() => Delete(i.identification)}><ion-icon name="trash-outline"></ion-icon></Trash>
                     </Box>)}
 
             </ContainerBox>
@@ -119,19 +119,32 @@ margin-left: 50px;`
 const Box= styled.div `
 display: flex;
 flex-direction: row;
+height:20px;
+width: calc(80%);
+border-radius: 30px;
+outline: none;
+border: 1px solid #ccc;
+padding: 15px;
+ margin: 1px;
+ :focus {
+        border: 2px solid #ffb6b6;
+        margin: 0px;
+    }
 `
 
 const Name= styled.div `
 font-family: 'Open Sans';
 font-weight: 300;
 font-size: large;
-margin-right: 300px;
+margin-right: 125px;
+width:250px;
 `
 
 const Price= styled.div `
 font-family: 'Open Sans';
 font-weight: 300;
-font-size: large;`
+font-size: large;
+margin-right:50px;`
 
 const Amount= styled.div `
 font-family: 'Open Sans';
@@ -140,11 +153,20 @@ font-size: large;
 margin-left: 50px;`
 
 const Trash=styled.button `
+margin-left:250px;
+background-color:white;
+ion-icon{
+    heigth:20px;
+    width:20px;
+};
+
 `
 
 const ContainerBox= styled.div `
 overflow-y: scroll;
-max-height: 500px;
+max-height: 200px;
+margin-left:180px;
+margin-top:20px;
 `
 
 const Align2= styled.div `

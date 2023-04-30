@@ -12,10 +12,10 @@ function Modal({onClose}){
 
     const navigate=useNavigate();
 
-    const {prodname, address, total, open, setOpen, cardname, digits, cvv, expire}= useContext(CartContext)
+    const {cart,address, total, open, setOpen, cardname, digits, cvv, expire}= useContext(CartContext)
 
     function ConfirmPurchase(){
-        const body= {prodname: prodname, address: address, total: total, cardname: cardname, digits: digits, cvv: cvv, expire: expire}
+        const body= {cart: cart, address: address, total: total, cardname: cardname, digits: digits, cvv: cvv, expire: expire}
         const promise=axios.post(`${process.env.REACT_APP_API_URL}/compras`,body,{
                headers: { Authorization: `Bearer ${auth}` }
              });

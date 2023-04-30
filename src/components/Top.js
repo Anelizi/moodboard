@@ -22,7 +22,7 @@ export default function Top() {
   return (
     <Container>
       <div>
-        <h1>moodboard</h1>
+        <Link to="/home"><h1>moodboard</h1></Link>
         <Icons>
           <button>
             <Link to="/cart"><IoCartSharp /></Link>
