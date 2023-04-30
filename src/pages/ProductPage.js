@@ -31,8 +31,9 @@ export default function Product(){
 
     function AddToCart(event){
         event.preventDefault()
+        console.log(auth)
         const body= {product: product, amount: amount, price: price }
-        const requisition= axios.post(`${process.env.REACT_APP_API_URL}/carrinho`,body);
+        const requisition= axios.post(`${process.env.REACT_APP_API_URL}/carrinho`,body, { headers: { Authorization: `Bearer ${auth}`}});
         requisition.then(navigate("/cart"))
         requisition.catch((err)=> alert(err.message))
     }

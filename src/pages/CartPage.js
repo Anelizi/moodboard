@@ -16,6 +16,7 @@ export default function Cart(){
         requisition.then((response) => {
             setCart(response.data);
         })
+        requisition.catch((err)=> alert(err.message))
     })
 
     
