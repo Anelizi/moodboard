@@ -6,26 +6,36 @@ import { useEffect } from "react";
 import axios from "axios"
 
 export default function SignIn() {
-   // useEffect(() => {const promise = axios.post("http://localhost:5000/produtos",{post: "ok"});
-   // promise.then((response)=> {console.log(response.data)});
-    //promise.catch((err)=> {alert(err.message)})},[] )
-    
+
+    const [products, setProducts] = useState("0")
+
+    useEffect(() => {
+    const promise = axios.post(`${process.env.REACT_APP_API_URL}/`, { post: "ok", product: products});
+    promise.then((res) => { console.log(products)});
+    promise.catch((err) => { alert(err.message) })
+    setProducts("3")
+     }, [])
+
+
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     function checkData(event) {
         event.preventDefault()
-        const data = { email, password}
+        const data = { email, password }
         const checkEMail = /\S+@\S+\.\S+/;
 
         if ((email.search(checkEMail) !== -1) && password.length > 3) {
-                const requisition=axios.post(`${process.env.REACT_APP_API_URL}/`, data)
-                requisition.then((res) => {alert("Usuário logado")
+            const requisition = axios.post(`${process.env.REACT_APP_API_URL}/`, data)
+            requisition.then((res) => {
+                alert("Usuário logado")
                 const user = JSON.stringify(res.data);
                 localStorage.setItem("usuario", user);
-                navigate('/home')})
-                requisition.catch((err)=> {alert(err.messag)
+                navigate('/home')
+            })
+            requisition.catch((err) => {
+                alert(err.messag)
             })
         } else {
             alert("Preencha os dados corretamente")
