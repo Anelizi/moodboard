@@ -3,19 +3,32 @@ import styled from "styled-components";
 export default function ProductsHomePage({product}) {
   const {linkPhoto, price, name} = product
   return (
-    <Button>
-      <img src={linkPhoto} alt={name}/>
-      <div>
-        <p>{`R$ ${price}`}</p>
-      </div>
-    </Button>
+    <Container>
+      <p>{name}</p>
+      <Button>
+        <img src={linkPhoto} alt={name}/>
+        <div>
+          <p>{`R$ ${price}`}</p>
+        </div>
+      </Button>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  width: 170px;
+  margin: 50px 20px 0 20px;
+  p{
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 10px 3px;
+    color: #1aa1a1;
+  }
+`
 
 const Button = styled.button`
   width: 150px;
   height: 150px;
-  margin: 50px 20px 0 20px;
   border-radius: 20px;
   position: relative;
   background: rgb(255, 255, 255);

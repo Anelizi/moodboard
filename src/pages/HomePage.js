@@ -50,6 +50,12 @@ const ContainerProduct = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  a{
+    text-decoration: none;
+  }
+  a:visited {
+      color: inherit;
+  }
 `;
 
 const Carregando = styled.div`

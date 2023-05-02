@@ -132,7 +132,8 @@ font-size: x-large;
 font-weight:900;
 width: 250px;
 height:100px;
-margin-top:50px;`
+margin-top:50px;
+cursor: pointer;`
 
 const Form= styled.form `
 display:flex;
