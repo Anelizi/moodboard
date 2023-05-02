@@ -4,7 +4,6 @@ export default function ProductsHomePage({product}) {
   const {linkPhoto, price, name} = product
   return (
     <Button>
-      {/* <img src="https://img.freepik.com/vetores-premium/frasco-cosmetico-de-prata-embalagem-de-dispensador-de-bomba-em-branco-para-shampoo-locao-pacote-de-sabonete-de-lavagem-de-mao-isolado-no-branco-tubo-para-tratamento-medico-transparente-sem-rotulo-produto-de-beleza-premium_83194-1225.jpg" /> */}
       <img src={linkPhoto} alt={name}/>
       <div>
         <p>{`R$ ${price}`}</p>
@@ -16,8 +15,7 @@ export default function ProductsHomePage({product}) {
 const Button = styled.button`
   width: 150px;
   height: 150px;
-  margin-top: 50px;
-  margin-left: 50px;
+  margin: 50px 20px 0 20px;
   border-radius: 20px;
   position: relative;
   background: rgb(255, 255, 255);
@@ -49,9 +47,9 @@ const Button = styled.button`
   }
   img {
     position: absolute;
-    border-radius: 20px 20px 0 0;
+    border-radius: 17px;
     width: 100%;
-    height: 80%;
+    height: 100%;
     top: 0;
     left: 0;
   }

@@ -9,29 +9,35 @@ import {
 } from "react-icons/io5";
 
 export default function Top() {
+  const navigate = useNavigate();
 
-  const navigate= useNavigate();
+  const info = localStorage.getItem("usuario");
+  const auth = JSON.parse(info);
 
-  const info = localStorage.getItem("usuario")
-    const auth = JSON.parse(info);
-  
   function Logout() {
-    const requisition = axios.delete(`http://localhost:5000/logout`, { headers: { Authorization: `Bearer ${auth}` } })
-    requisition.then(navigate("/"))
+    const requisition = axios.delete(`http://localhost:5000/logout`, {
+      headers: { Authorization: `Bearer ${auth}` },
+    });
+    requisition.then(navigate("/"));
   }
   return (
     <Container>
       <div>
-        <Link to="/home"><h1>moodboard</h1></Link>
+        <Link to="/home">
+          <h1>moodboard</h1>
+        </Link>
         <Icons>
           <button>
-            <Link to="/cart"><IoCartSharp /></Link>
+            <Link to="/cart">
+              <IoCartSharp />
+            </Link>
           </button>
           <button>
-            <Link to="/purchasesMade"><IoPersonCircleSharp /></Link>
+            <Link to="/purchasesMade">
+              <IoPersonCircleSharpIcon/>
+            </Link>
           </button>
           <button onClick={Logout}>
-
             <IoExitOutline />
           </button>
         </Icons>
@@ -56,6 +62,12 @@ const Container = styled.div`
     weight: 100%;
     display: flex;
     align-items: center;
+    a {
+      text-decoration: none;
+    }
+    a:visited {
+      color: inherit;
+    }
     h1 {
       font-size: 40px;
       font-weight: 700;
@@ -82,6 +94,10 @@ const Icons = styled.div`
     cursor: pointer;
   }
 `;
+
+const IoPersonCircleSharpIcon = styled(IoPersonCircleSharp)`
+  color: #000000;
+`
 
 const Gradient = styled.div`
   width: 100vw;
