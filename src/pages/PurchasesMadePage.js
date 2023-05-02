@@ -6,32 +6,31 @@ import { AuthContext } from "../contexts/AuthContect";
 import { useState, useEffect } from "react"
 
 export default function PurchasesMadePage() {
-  const { token } = useContext(AuthContext);
-  const [dados, setDados] = useState();
+  //const { token } = useContext(AuthContext);
+  const [dados, setDados] = useState([]);
+  const [usuario, setUsuario]= useState([])
   const info = localStorage.getItem("usuario")
-  const user = JSON. parse(info)
+  const auth = JSON.parse(info)
 
-  console.log(user)
- 
-    const requisition = axios.get(`${process.env.REACT_APP_API_URL}/purchasesMade`,  {
-      headers: {
-        User: user
-      }
+  useEffect(() => {const promise= axios.get(`${process.env.REACT_APP_API_URL}/cadastro`,  { headers: { Authorization: `Bearer ${auth}` }
+  });
+  promise.then((response) => {setUsuario(response.data);
+    const requisition = axios.get(`${process.env.REACT_APP_API_URL}/compras`,  { headers: {   Authorization: `Bearer ${auth}` }
     })
-      .then((res) => setDados(res.data))
-      .catch((err) => console.log(err.res));
+      requisition.then((res) => setDados(res.data))
+      requisition.catch((err) => console.log(err.res));
 
-      console.log(dados)
+      console.log(dados)})
+},[])
   return (
     <Container>
       <Top />
       <ContainerUser>
-        <img src="https://e7.pngegg.com/pngimages/926/34/png-clipart-computer-icons-user-profile-avatar-avatar-face-heroes.png" />
-        <h3>{"dados.name"}</h3>
-        <div>
-          <p>Compra realizada:</p>
-          <p>Data:</p>
-        </div>
+        <img src={usuario.image} />
+        <h3>{usuario.name}</h3>
+          {dados?.map((i) => <div><p>Compra realizada: {i.purchase.length} produtos</p>
+          <p>Data: {i.date}</p></div>)}
+        
       </ContainerUser>
     </Container>
   )
