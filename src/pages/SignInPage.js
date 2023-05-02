@@ -2,21 +2,12 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import axios from "axios"
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContect";
 
 export default function SignIn() {
-
-    const [products, setProducts] = useState("0")
-
-    useEffect(() => {
-    const promise = axios.post(`${process.env.REACT_APP_API_URL}/`, { post: "ok", product: products});
-    promise.then((res) => { console.log(products)});
-    promise.catch((err) => { alert(err.message) })
-    setProducts("3")
-     }, [])
-
-
+    const { handleSetToken } = useContext(AuthContext);
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -30,8 +21,10 @@ export default function SignIn() {
             const requisition = axios.post(`${process.env.REACT_APP_API_URL}/`, data)
             requisition.then((res) => {
                 alert("Usuário logado")
+                console.log(res)
                 const user = JSON.stringify(res.data);
                 localStorage.setItem("usuario", user);
+                handleSetToken(res.data);
                 navigate('/home')
             })
             requisition.catch((err) => {

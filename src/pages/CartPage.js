@@ -20,6 +20,7 @@ export default function Cart(){
     })
 
     
+    
     const {cart, setCart, address, setAddress, total, setTotal, open, setOpen, cardname, setCardname, digits, setDigits, expire, setExpire, cvv, setCvv}= useContext(CartContext)
 
     let valorfinal=0;
