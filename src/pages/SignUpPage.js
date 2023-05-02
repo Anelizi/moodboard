@@ -16,12 +16,11 @@ export default function SignUp() {
 
     function checkData(event) {
         event.preventDefault()
-        const URL = "http://localhost:5000/cadastro"
         const data = { name, image, email, password }
         const checkEMail = /\S+@\S+\.\S+/;
 
         if ((email.search(checkEMail) !== -1) && password.length > 3 && name.length >1 && password === Confirmedpassword) {
-            const promise = axios.post(URL, data)
+            const promise = axios.post(`${process.env.REACT_APP_API_URL}/cadastro`, data)
             promise.then(response => {
                 alert("Bem-vinde! Usuário cadastrado")
                 handleSetToken(response.data.token)
